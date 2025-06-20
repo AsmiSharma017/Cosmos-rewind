@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cosmos Rewind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      background: radial-gradient(ellipse at bottom, #0d0b28 0%, #000000 100%);
+      font-family: 'Playfair Display', serif;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .planet {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #a678f1, #5ab7f3);
+      position: relative;
+      margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .planet::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      top: 60px;
+      left: -30px;
+      transform: rotate(10deg);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      color: #b49afc;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #aaa;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      background-color: transparent;
+      border: 2px solid #7b61ff;
+      color: #ffffff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #7b61ff;
+      color: black;
+    }
+
+    .stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  animation: twinkle 300s linear infinite;
+  z-index: -1;
+}
+
+
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 10000px; }
+    }
+  </style>
+</head>
+<p style="
+  position: fixed;
+  bottom: 10px;
+  left: 15px;
+  font-size: 0.85rem;
+  color: #ede4e4;
+  
+  opacity: 0.6;
+">
+Made with stardust by Asmi Sharma
+</p>
+
+<body>
+
+  <div class="stars"></div>
+
+  <div class="planet"></div>
+
+  <h1>COSMOS REWIND</h1>
+  <h3>“The universe may be 13.8 billion years old, but your story is just getting started.”
+
+  </h3>
+
+  <button class="btn" onclick="location.href='app.html'"> Launch into the past </button>
+
+  <audio autoplay loop id="bgMusic">
+    <source src="sounds/space-dna-259198.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    window.addEventListener('click', () => {
+      document.getElementById('bgMusic').play();
+    }, { once: true });
+  </script>
+<p style="
+position: fixed;
+bottom: 10px;
+right: 15px;
+font-size: 0.9rem;
+color: #dfdddd;
+
+opacity: 0.8;
+">
+Click anywhere to hear the magic ✨
+</p>
+
+  
+
+</body>
+</html>
