@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Space Capsule</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Playfair Display', serif;
+      background: radial-gradient(ellipse at bottom, #0d0b28 0%, #000000 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: twinkle 300s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 10000px; }
+    }
+
+    .capsule-entry {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(123, 97, 255, 0.4);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    h2 {
+      color: #b49afc;
+    }
+
+    .comment {
+      margin-top: 10px;
+      font-style: italic;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <h1>🚀 My Cosmic Time Capsule</h1>
+  <div id="capsuleContainer"></div>
+
+  <script>
+    const container = document.getElementById("capsuleContainer");
+    const apiKey = "DEMO_KEY"; 
+
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith("capsule_")) {
+        const date = key.split("_")[1];
+        const userNote = localStorage.getItem(key);
+
+        fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${date}`)
+          .then(res => res.json())
+          .then(data => {
+            const entry = document.createElement("div");
+            entry.className = "capsule-entry";
+
+            entry.innerHTML = `
+              <h2>${date}</h2>
+              <p><strong>Your Thought:</strong> ${userNote}</p>
+              <img src="${data.url}" alt="NASA Image for ${date}" />
+              <p class="comment">🌠 Asmi’s Cosmic Comment: "${generateComment(userNote)}"</p>
+            `;
+
+            container.appendChild(entry);
+          });
+      }
+    });
+
+    function generateComment(note) {
+      const lower = note.toLowerCase();
+      if (lower.includes("moon")) return "The Moon always listens.";
+      if (lower.includes("mars")) return "Mars seems to hold your dreams!";
+      if (lower.includes("galaxy")) return "Your thoughts expand like the cosmos.";
+      return "A truly stellar thought! 🌌";
+    }
+  </script>
+  <audio autoplay loop id="bgMusic">
+    <source src="sounds/space-dna-259198.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    window.addEventListener('click', () => {
+      document.getElementById('bgMusic').play();
+    }, { once: true });
+  </script>
+</body>
+</html>
