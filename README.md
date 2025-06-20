@@ -3,7 +3,7 @@
 
 **Cosmic Calendar** is a space-themed web application that displays NASA's Astronomy Picture of the Day (APOD) based on a selected date. Users can explore random space events, listen to themed music, save thoughts in a personal time capsule, and mark favorite cosmic discoveries.
 
-**Live Demo:** _Add your deployed website link here_
+**Live Website (just click and test) :** https://cosmos-rewind.onrender.com/
 
 ---
 
